@@ -1,0 +1,179 @@
+:root{
+    --dark-gray: hsl(0, 0%, 63%);
+    --black: hsl(0, 0%, 0%);
+    --white: hsl(0, 0%, 100%);
+    --very-Dark-Gray: hsl(0, 0%, 27%);
+}
+
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'League Spartan', sans-serif;
+}
+
+.main{
+    display: grid; /*https://platzi.com/blog/css-grid-cheat-sheet-contenedores/   para más info de grid*/
+    max-width: 1400px;
+    margin: 0 auto;
+    grid-template-columns: 1fr; /* define lascolumnas*/
+    grid-template-rows:repeat(5, max-content) ;  /*filas de la cuadricula**/
+    grid-template-areas: /*define una plantilla de cuadrícula haciendo referencia a los nombres de las áreas de cuadrícula que se especifican con la propiedad*/
+    "main"
+    "cta"
+    "image1"
+    "about"
+    "image2"  ;
+}
+
+.container{
+    width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 60px 0;
+}
+
+.main__hero{
+    grid-area: main;
+    background-image:url(../images/desktop-image-hero-1.jpg) ;
+    min-height: 500px;
+    background-size: cover;
+    background-position: center;
+}
+
+.main__nav{
+    display: flex; /*hace que el elemento se ponga al lado del otro(estaba en bloque y ahora se pone a su costado)*/
+
+}
+
+.main__links{
+    display: none; /*hace que los enlaces desaparezcan*/
+}
+
+.main__logo{
+    margin: 0 auto; /*centra al logo*/
+}
+
+.main__controls{
+    grid-area: main; /*para que se posicione en main*/
+    align-self: end; /*permite alinear al  grid.items el las columnas*/
+    justify-self: end ;/*permite alinear en filas*/
+
+    /* primeros pasos al final los de arriba*/
+    background-color: var(--black);
+    width: 100px;
+    height: 50px;
+    display: flex; /* usamos flex-box para que los elementos se peguen a las esquinas */
+    justify-content: space-around; /*pero con un espacio entre ellos de manera equitativa*/
+    align-items: center; /*se centrarán verticalmente*/
+}
+
+.main__control{
+    height: 40%;
+}
+
+.main__buy{
+    grid-area: cta;
+}
+
+.main__content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items:flex-start ;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.main__title{
+    color: var(--black);
+}
+
+.main__paragraph{
+    line-height: 1.5; /*alto de linea*/
+    margin: 1em 0 2em;
+    color: var(--dark-gray);
+}
+
+.main__paragraph--about{
+    margin: 1em 0 0 0 ;
+}
+
+.main__cta{
+    text-decoration: none; /*para que desaparezca el subrayado del link*/
+    color: var(--very-Dark-Gray);
+    text-transform: uppercase; /*para que la letra se haga todo mayúscula*/
+    letter-spacing: 10px; /*para en las letras haya un espaciado*/
+}
+
+.main__arrow{
+    margin-left: 20px;
+}
+
+.main__bg{
+   grid-area: image1; 
+   min-height: 250px;
+   height: 100%;
+   background-image: url(../images/image-about-dark.jpg);
+   background-size: cover;
+   background-position:center ;
+}
+
+.main__about{
+    grid-area: about;
+}
+
+.main__bg--second{
+    grid-area: image2;
+    background-image: url(../images/image-about-light.jpg);
+}
+
+/*Tablet*/
+@media (min-width:768px){
+    .container{
+        width: 85%;
+        padding: 70px 0;
+    }
+
+    .main{
+        grid-template-columns: repeat(7,1fr); /*ahora ya habrá 7 columnas y ya no uno*/
+        grid-template-areas: /*estos serán el orden de las areas*/
+        "main main main main cta cta cta" /*main ocupará los 4 columnas y cta los 3 últimos*/
+        "main main main main cta cta cta"
+        "main main main main cta cta cta"
+        "image1 image1 about about about image2 image2"
+        "image1 image1 about about about image2 image2";
+    }
+
+    .main__controls{
+        grid-area: cta; /*ahora ya se pondrá en area de cta*/
+        justify-self: start; /*esas flechitas ya se pondrán al otro lado o inicio*/
+    }
+
+    .main__logo{
+        margin:0 ;
+    }
+
+    .main__hamburguer{
+        display: none; /*ya desaparece en menu hamburguer*/
+    }
+
+    .main__links{
+        padding: 0;
+        display: grid; /*aparecerán los links*/
+        grid-auto-flow: column; /*los links ya estarán en columnas*/
+        gap: 1em; /*tendrán espaciado*/
+        margin-left:10% ; /*para que los links se separen del logo*/
+    }
+
+    .main__list{
+        list-style:none ; /*se quitará ese estilo de la letra*/
+    }
+
+    .main__link{
+      color:var(--white); 
+      text-decoration: none; 
+    }
+    
+}
